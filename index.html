@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Rock Paper Scissors</title>
+</head>
+
+<style>
+.container{
+    background-color: yellow;
+}
+.main{
+  width: 50%;
+  height: 50%;
+  overflow: auto;
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  
+}
+
+.effects{
+    margin: .4em;
+    padding: 1em;
+    cursor: pointer;
+    background: #e1e1e1;
+    text-decoration: none;
+    color: #666;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-font-smoothing: antialiased;
+}
+</style>
+<body class="container" style="box-align: center;">
+    <div class="main" align="center">
+        <h1 class="effects">Boiler Plate Working</h1>
+        <img id="img1" src="../images/rock.png" alt="Rock Image" style="width: 50px; height: 50px;">
+        <img id="img2" src="../images/paper.png" alt="Paper Image"  style="width: 50px; height: 50px;"> 
+        <img id="img3" src="../images/scissors.png" alt="Scissors Image"  style="width: 50px; height: 50px;">
+        <br>
+
+        <button id="btn" style="background-color: palegoldenrod;">Click ME</button>
+    </div>
+    <script src="../JS/main.js" ></script>
+</body>
+</html>
