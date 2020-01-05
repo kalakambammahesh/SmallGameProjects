@@ -1,1 +1,180 @@
 
+import java.util.*;
+import java.util.Scanner;
+
+public class TikTacToe{
+    
+     public static List<Integer> lst = new ArrayList();
+     public static List<List<Integer>> winningCombinations = new ArrayList();
+     public static List<Integer> playerPos = new ArrayList();
+     public static List<Integer> cpuPos = new ArrayList();
+     //Creating 2D array to display playboard
+     public static char[][] playBoard = {
+     {' ', '|', ' ', '|', ' '},
+     {'-', '+', '-', '+', '-'},
+     {' ', '|', ' ', '|', ' '},
+     {'-', '+', '-', '+', '-'},
+     {' ', '|', ' ', '|', ' '}
+ };
+
+     public static void main(String []args){
+        System.out.println("Start of TIC TAK TOE");
+        printPlayBoard(playBoard);
+        String result = "";
+       while(lst.size() < 10) {
+           System.out.println("Select a Number");
+           Scanner sc = new Scanner(System.in);
+           int userInput = sc.nextInt();
+           System.out.println("UserInput:"+userInput);
+           updatePlayBoard(playBoard, userInput, "user");
+           Random rnd = new Random();
+           int systemInput = 0;
+           while(true) {
+              systemInput = rnd.nextInt(9)+1;
+              if(!lst.contains(systemInput)) {
+            	  break;
+              }
+           }
+           System.out.println("System Selected Number:"+systemInput);
+           updatePlayBoard(playBoard, systemInput, "system");
+           printPlayBoard(playBoard);
+           result = winning();
+           System.out.println(result + "check");
+       }
+       System.out.println("Result::"+result);
+      
+     }
+     
+     public static String winning() {
+    	 
+    	 List<Integer> topRow = Arrays.asList(1, 2, 3);
+    	 List<Integer> midRow = Arrays.asList(4, 5, 6);
+    	 List<Integer> btmRow = Arrays.asList(7, 8, 9);
+    	 List<Integer> leftCol = Arrays.asList(1, 4, 7);
+    	 List<Integer> rightCol = Arrays.asList(3, 6, 9);
+    	 List<Integer> midCol = Arrays.asList(2, 5, 8);
+    	 List<Integer> cross1 = Arrays.asList(1, 5, 9);
+    	 List<Integer> cross2 = Arrays.asList(3, 5, 7);
+    	 
+    	 winningCombinations.add(topRow);
+    	 winningCombinations.add(midRow);
+    	 winningCombinations.add(btmRow);
+    	 winningCombinations.add(leftCol);
+    	 winningCombinations.add(rightCol);
+    	 winningCombinations.add(midCol);
+    	 winningCombinations.add(cross1);
+    	 winningCombinations.add(cross2);
+    	
+    	for(List<Integer> winningCombination : winningCombinations) {
+			if (playerPos.containsAll(winningCombination)) {
+				return "User Wins the game";
+			}else if(cpuPos.containsAll(winningCombination)) {
+				return "System Wins the game";
+			}
+    	}
+    	 return "";
+     }
+     
+     //Method to update playBase on input
+     public static void updatePlayBoard(char[][] playBoard, int input, String inputType) {
+    	 lst.add(input);
+         switch(input) {
+            case 1:
+            	if(inputType.equals("user")) {
+            		playBoard[0][0] = 'X';
+            		playerPos.add(input);
+            	}else {
+            		playBoard[0][0] = 'O';
+            		cpuPos.add(input);
+            	}
+                playBoard[0][0] = inputType.equals("user")?'X':'O';
+                break;
+            case 2:
+            	if(inputType.equals("user")) {
+            		playBoard[0][2] = 'X';
+            		playerPos.add(input);
+            	}else {
+            		playBoard[0][2] = 'O';
+            		cpuPos.add(input);
+            	}
+                break;
+            case 3:
+            	if(inputType.equals("user")) {
+            		playBoard[0][4] = 'X';
+            		playerPos.add(input);
+            	}else {
+            		playBoard[0][4] = 'O';
+            		cpuPos.add(input);
+            	}
+                break;
+            case 4:
+            	if(inputType.equals("user")) {
+            		playBoard[2][0] = 'X';
+            		playerPos.add(input);
+            	}else {
+            		playBoard[2][0] = 'O';
+            		cpuPos.add(input);
+            	}
+                break;
+            case 5:
+            	if(inputType.equals("user")) {
+            		playBoard[2][2] = 'X';
+            		playerPos.add(input);
+            	}else {
+            		playBoard[2][2] = 'O';
+            		cpuPos.add(input);
+            	}
+                break;
+            case 6:
+            	if(inputType.equals("user")) {
+            		playBoard[2][4] = 'X';
+            		playerPos.add(input);
+            	}else {
+            		playBoard[2][4] = 'O';
+            		cpuPos.add(input);
+            	}
+                break;
+            case 7:
+            	if(inputType.equals("user")) {
+            		playBoard[4][0] = 'X';
+            		playerPos.add(input);
+            	}else {
+            		playBoard[4][0] = 'O';
+            		cpuPos.add(input);
+            	}
+                break;
+            case 8:
+            	if(inputType.equals("user")) {
+            		playBoard[4][2] = 'X';
+            		playerPos.add(input);
+            	}else {
+            		playBoard[4][2] = 'O';
+            		cpuPos.add(input);
+            	}
+                break;
+            case 9:
+            	if(inputType.equals("user")) {
+            		playBoard[4][4] = 'X';
+            		playerPos.add(input);
+            	}else {
+            		playBoard[4][4] = 'O';
+            		cpuPos.add(input);
+            	}
+                break;
+            default:
+               System.out.println("Please Enter Valid Input");
+         }
+         System.out.println("======================");
+        
+     }
+     
+     //Method to printPlayBoard at any time
+     public static void printPlayBoard(char[][] playBoard) {
+          for(int i = 0;i < 5;i++) {
+            for(int j = 0;j < 5;j++) {
+                System.out.print(playBoard[i][j]);
+            }
+            System.out.println("");
+        }
+     }
+}
